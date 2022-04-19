@@ -1,2 +1,7 @@
 # Databricks notebook source
-THis is a test no
+# MAGIC %sh
+# MAGIC uptime
+
+# COMMAND ----------
+
+
