@@ -4,4 +4,8 @@
 
 # COMMAND ----------
 
+dbutils.secrets.list("")
+
+# COMMAND ----------
+
 
