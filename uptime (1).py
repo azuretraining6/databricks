@@ -6,12 +6,15 @@
 
 # MAGIC %sh
 # MAGIC curl -X GET --header "Authorization: Bearer $DATABRICKS_TOKEN" \
-# MAGIC https://adb-4784284663471480.0.azuredatabricks.net/api/2.0/secrets/scopes/list
+# MAGIC https://adb-4784284663471480.0.azuredatabricks.net/api/2.0/secrets/scopes/list 
 
 # COMMAND ----------
 
 # MAGIC %sh
-# MAGIC databricks secrets list-scopes --output JSON
+# MAGIC curl -X POST --header "Authorization: Bearer $DATABRICKS_TOKEN" \
+# MAGIC https://adb-4784284663471480.0.azuredatabricks.net/api/2.0/secrets/delete \
+# MAGIC --scope="blobfileread"
+# MAGIC #key = "blobread"
 
 # COMMAND ----------
 
@@ -25,6 +28,10 @@ extra_configs = {"fs.azure.account.key.devopsdemongk.blob.core.windows.net":dbut
 
 df = spark.read.text("/mnt/mymount/sample.txt")
 df.show()
+
+# COMMAND ----------
+
+dbutils.fs.unmount("/mnt/mymount")
 
 # COMMAND ----------
 
